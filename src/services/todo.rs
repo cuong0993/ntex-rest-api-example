@@ -1,5 +1,7 @@
 use ntex::web;
 
+use crate::error::HttpError;
+use crate::models::todo::Todo;
 use crate::models::todo::TodoPartial;
 
 /// List all todos
