@@ -6,7 +6,7 @@ mod services;
 
 #[ntex::main]
 async fn main() -> std::io::Result<()> {
-  web::server(|| {
+  web::server(|| async move {
     web::App::new()
       // Register swagger endpoints
       .configure(services::openapi::ntex_config)
