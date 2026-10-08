@@ -24,8 +24,8 @@ impl std::fmt::Display for HttpError {
 impl std::error::Error for HttpError {}
 
 /// Helper function to convert an HttpError into a ntex::web::HttpResponse
-impl web::WebResponseError for HttpError {
-  fn error_response(&self, _: &web::HttpRequest) -> web::HttpResponse {
-    web::HttpResponse::build(self.status).json(&self)
+impl web::WebResponseError<(), web::DefaultError> for HttpError {
+  fn error_response(&self, _: &()) -> web::HttpResponse {
+    web::HttpResponse::builder(self.status).json(&self)
   }
 }
