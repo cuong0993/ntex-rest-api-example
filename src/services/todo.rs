@@ -14,7 +14,7 @@ use crate::models::todo::TodoPartial;
 )]
 #[web::get("/todos")]
 pub async fn get_todos() -> web::HttpResponse {
-  web::HttpResponse::Ok().finish()
+  web::HttpResponse::Ok().build()
 }
 
 /// Create a new todo
@@ -30,7 +30,7 @@ pub async fn get_todos() -> web::HttpResponse {
 pub async fn create_todo(
   _todo: web::types::Json<TodoPartial>,
 ) -> web::HttpResponse {
-  web::HttpResponse::Created().finish()
+  web::HttpResponse::Created().build()
 }
 
 /// Get a todo by id
@@ -44,7 +44,7 @@ pub async fn create_todo(
 )]
 #[web::get("/todos/{id}")]
 pub async fn get_todo() -> web::HttpResponse {
-  web::HttpResponse::Ok().finish()
+  web::HttpResponse::Ok().build()
 }
 
 /// Update a todo by id
@@ -59,7 +59,7 @@ pub async fn get_todo() -> web::HttpResponse {
 )]
 #[web::put("/todos/{id}")]
 pub async fn update_todo() -> web::HttpResponse {
-  web::HttpResponse::Ok().finish()
+  web::HttpResponse::Ok().build()
 }
 
 /// Delete a todo by id
@@ -73,10 +73,10 @@ pub async fn update_todo() -> web::HttpResponse {
 )]
 #[web::delete("/todos/{id}")]
 pub async fn delete_todo() -> web::HttpResponse {
-  web::HttpResponse::Ok().finish()
+  web::HttpResponse::Ok().build()
 }
 
-pub fn ntex_config(cfg: &mut web::ServiceConfig) {
+pub fn ntex_config(cfg: &mut web::ServiceConfig<()>) {
   cfg.service(get_todos);
   cfg.service(create_todo);
   cfg.service(get_todo);
